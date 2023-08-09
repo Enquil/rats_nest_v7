@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Product, Category, Domain, Brand
+from .models import Product, Category, Domain, Brand, Color
+
+
+@admin.register(Color)
+class ColorAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'id',
+        'name'
+    )
 
 
 @admin.register(Domain)
