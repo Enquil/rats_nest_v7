@@ -1,4 +1,5 @@
 from django.db import models
+import random
 
 M_OR_F = (
     (
@@ -66,6 +67,7 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     m_or_f = models.CharField(null=True, max_length=254, choices=M_OR_F)
+    color = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.name
