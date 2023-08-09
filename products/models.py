@@ -9,6 +9,18 @@ M_OR_F = (
     )
 )
 
+
+class Color(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Colors'
+
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
+
+
 class Brand(models.Model):
 
     class Meta:
@@ -67,7 +79,7 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     m_or_f = models.CharField(null=True, max_length=254, choices=M_OR_F)
-    color = models.CharField(max_length=254, null=True, blank=True)
+    color = models.ForeignKey('Color', null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -84,6 +96,7 @@ class Product(models.Model):
                 f'{self.domain}' +
                 f'{self.brand.id}' +
                 f'{self.category.id}' +
+                f'{self.color.id}' +
                 str(random.randint(10000, 99999))
             )
 

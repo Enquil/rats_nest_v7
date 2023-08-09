@@ -3,8 +3,20 @@
 
 {% block content %}
 
-{% for product in products %}
-    {{ product.name }}
-{% endfor %}
+<div class="container-fluid">
+    <div class="row">
+    {% for product in products %}
+        <div class="col-md-4 col-lg-3">
+            <div class="card">
+                {{ product.name }}
+                {{ product.brand }}
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 %}
+        </div>
+        <div class="row">
+            {% endif %}
+    {% endfor %}
+</div>
 
 {% endblock content %}
