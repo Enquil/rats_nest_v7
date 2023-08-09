@@ -80,6 +80,7 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
     m_or_f = models.CharField(null=True, max_length=254, choices=M_OR_F)
     color = models.ForeignKey('Color', null=True, blank=True, on_delete=models.SET_NULL)
+    has_sizes = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return self.name
