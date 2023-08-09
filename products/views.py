@@ -34,6 +34,9 @@ def all_products(request):
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
 
+        if 'domain' in request.GET:
+            products = products.filter(domain=request.GET['domain'])
+
         if 'category' in request.GET:
             products = products.filter(category=request.GET['category'])
 
