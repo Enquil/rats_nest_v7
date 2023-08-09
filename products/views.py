@@ -11,6 +11,7 @@ def all_products(request):
 
     products = Product.objects.all()
     query = None
+    domain = None
     categories = None
     sort = None
     direction = None
@@ -36,6 +37,7 @@ def all_products(request):
 
         if 'domain' in request.GET:
             products = products.filter(domain=request.GET['domain'])
+            domain = Domain.objects.get(id=request.GET['domain'])
 
         if 'category' in request.GET:
             products = products.filter(category=request.GET['category'])
@@ -58,6 +60,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        'domain': domain,
     }
 
     return render(request, 'products/products.html', context)
