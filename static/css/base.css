@@ -1,7 +1,15 @@
+/* color scheme */
+
 .bg-charcoal {
     background-color: #36454F;
 }
 
 .charcoal {
     color: #36454F;
+}
+
+
+/* products */
+.product-card-img {
+    max-width: 100%;
 }
