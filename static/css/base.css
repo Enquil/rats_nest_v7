@@ -13,3 +13,9 @@
 .product-card-img {
     max-width: 100%;
 }
+
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
