@@ -4,7 +4,7 @@ from .forms import ProductForm
 def add_product(request):
     """ Add a product to the store """
     form = ProductForm()
-    template = 'products/add_product.html'
+    template = 'admin_actions/admin_actions.html'
     context = {
         'form': form,
     }
