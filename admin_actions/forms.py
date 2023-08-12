@@ -1,5 +1,5 @@
 from django import forms
-from products.models import Product, Category, Color, Brand
+from products.models import Product, Category, Color, Brand, Domain
 
 
 class ProductForm(forms.ModelForm):

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import ProductForm
 
 def add_product(request):
     """ Add a product to the store """
