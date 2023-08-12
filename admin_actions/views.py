@@ -1,5 +1,6 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404 
 from .forms import ProductForm
+from products.models import Product
 
 def add_product(request):
     """ Add a product to the store """
@@ -14,9 +15,36 @@ def add_product(request):
     else:
         form = ProductForm()
         
-    template = 'admin_actions/admin_actions.html'
+    template = 'admin_actions/add_product.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def edit_product(request, product_id):
+    """ Edit an existing product """
+
+    # Get the product from the id passed as an argument
+    product = get_object_or_404(Product, pk=product_id)
+    
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated product!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+    else:
+        form = ProductForm(instance=product)
+        # messages.info(request, f'You are editing {product.name}')
+
+    template = 'admin_actions/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
     }
 
     return render(request, template, context)
