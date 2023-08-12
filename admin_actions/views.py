@@ -1,6 +1,8 @@
-from django.shortcuts import render, reverse, get_object_or_404 
+from django.shortcuts import render, reverse, get_object_or_404, redirect
 from .forms import ProductForm
 from products.models import Product
+from django.contrib import messages
+
 
 def add_product(request):
     """ Add a product to the store """
@@ -39,7 +41,7 @@ def edit_product(request, product_id):
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
-        # messages.info(request, f'You are editing {product.name}')
+        messages.info(request, f'You are editing {product.name}')
 
     template = 'admin_actions/edit_product.html'
     context = {
@@ -48,3 +50,11 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
+
+def delete_product(request, product_id):
+    """ Delete a product from the store """
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product deleted!')
+    return redirect(reverse('products'))
