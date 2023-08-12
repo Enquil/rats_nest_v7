@@ -6,7 +6,17 @@
 <div class="row">
     <div class="col-6 offset-3">
         <form action="{% url 'add_product' %}" method="post">
-            {{ form|crispy }}
+            {{ form.brand | as_crispy_field }}
+            {{ form.category | as_crispy_field }}
+            {{ form.name | as_crispy_field }}
+            {{ form.description | as_crispy_field }}
+            {{ form.price | as_crispy_field }}
+            {{ form.rating | as_crispy_field }}
+            {{ form.image | as_crispy_field }}
+            {{ form.m_or_f | as_crispy_field }}
+            {{ form.color | as_crispy_field }}
+            {{ form.has_sizes | as_crispy_field }}
+            <button class="btn btn-info" type="submit">Save Product</button>
         </form>
     </div>
 </div>
