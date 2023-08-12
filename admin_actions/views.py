@@ -14,7 +14,7 @@ def add_product(request):
     else:
         form = ProductForm()
         
-    template = 'products/add_product.html'
+    template = 'admin_actions/admin_actions.html'
     context = {
         'form': form,
     }

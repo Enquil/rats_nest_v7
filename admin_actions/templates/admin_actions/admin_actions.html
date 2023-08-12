@@ -6,6 +6,7 @@
 <div class="row">
     <div class="col-6 offset-3">
         <form action="{% url 'add_product' %}" method="post">
+            {% csrf_token %}
             {{ form.brand | as_crispy_field }}
             {{ form.category | as_crispy_field }}
             {{ form.name | as_crispy_field }}
