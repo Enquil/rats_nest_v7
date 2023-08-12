@@ -5,7 +5,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-5">
-            <img class="img-responsive" width="100%" src="{{ product.image.url }}" alt="">
+            {% if product.image %}
+                <img class="img-responsive" width="100%" src="{{ product.image.url }}" alt="">
+            {% else %}
+                <img src="/media/no_image.jpg" alt="" class="img-responsive" width="100%">
+            {% endif %}
         </div>
         <div class="col-12 col-md-7">
             <!-- navigation between categories/domain -->
