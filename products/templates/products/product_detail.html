@@ -3,6 +3,12 @@
 
 {% block content %}
 <div class="container-fluid">
+    <!-- navigation between categories/domain -->
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'products' %}?domain={{ product.domain }}">{{ product.category.domain }}</a> / <a href="{% url 'products' %}?category={{ product.category.id }}">{{ product.category }}</a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 col-md-5">
             {% if product.image %}
@@ -12,15 +18,10 @@
             {% endif %}
         </div>
         <div class="col-12 col-md-7">
-            <!-- navigation between categories/domain -->
-            <div class="row">
-                <div class="col-12">
-                    <a href="{% url 'products' %}?domain={{ product.domain }}">{{ product.category.domain }}</a> / <a href="{% url 'products' %}?category={{ product.category.id }}">{{ product.category }}</a>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-12">
                     <h1>{{ product.name }}</h1>
+                    <a href="{% url 'delete_product' product.id %}">Delete</a>
                 </div>
             </div>
 
