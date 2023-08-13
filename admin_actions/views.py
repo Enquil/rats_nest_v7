@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, get_object_or_404, redirect
 from .forms import ProductForm
 from products.models import Product
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def add_product(request):
