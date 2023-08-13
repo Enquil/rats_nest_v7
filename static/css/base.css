@@ -8,6 +8,9 @@
     color: #36454F;
 }
 
+.hover-dark:hover {
+    background-color: 	#71797E;
+}
 
 /* products */
 .product-card-img {
