@@ -7,6 +7,16 @@ from django.core.exceptions import PermissionDenied
 
 
 @login_required
+def admin_actions(request):
+
+    if request.user.is_superuser:
+        template = 'admin_actions/admin_actions.html'
+        return render(request, template)
+    else:
+        raise PermissionDenied
+
+
+@login_required
 def add_product(request):
     """ Add a product to the store """
     if request.user.is_superuser:
