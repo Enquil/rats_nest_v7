@@ -102,17 +102,19 @@
 
                 <!-- shopping cart and profile link -->
                 <div class="col-5 col-md-2 text-right pt-2 pt-md-0">
+                    <p class="text-white d-inline">
+                    {% if grand_total %}
+                        $ {{ grand_total|floatformat:2 }}
+                    {% else %}
+                        $ 0.00
+                    {% endif %}
+                    </p>
                     <a class="text-white text-decoration-none" href="{% url 'view_bag' %}">
-                        {% if grand_total %}
-                            $ {{ grand_total|floatformat:2 }}
-                        {% else %}
-                            $ 0.00
-                        {% endif %}
-                        <i class="fa-solid fa-cart-shopping fa-xl text-white"></i>
+                        <i class="fa-solid fa-cart-shopping fa-xl text-white hover-coral"></i>
                     </a>
                     <div class="dropdown show d-inline-block">
                         <a href="#" role="button" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa-solid fa-user fa-xl text-white ml-2"></i>
+                            <i class="fa-solid fa-user fa-xl text-white ml-2 hover-coral"></i>
                         </a>
                         <div class="dropdown-menu rounded-0 dropdown-menu-right bg-charcoal" aria-labelledby="user-dropdown">
                             {% if user.is_superuser %}
@@ -134,13 +136,13 @@
             <div class="row lower-header d-none d-md-flex">
                 <!-- left side -->
                 <div class="col-5 offset-1 d-none d-md-block">
-                    <a class="text-white pr-2" href="{% url 'products' %}?domain=1">Clothing</a>
-                    <a class="text-white pr-2" href="{% url 'products' %}?domain=2">Gear and Equipment</a>
-                    <a class="text-white pr-2" href="{% url 'products' %}?domain=3">Supplements</a>
+                    <a class="text-white pr-2 hover-coral" href="{% url 'products' %}?domain=1">Clothing</a>
+                    <a class="text-white pr-2 hover-coral" href="{% url 'products' %}?domain=2">Gear and Equipment</a>
+                    <a class="text-white pr-2 hover-coral" href="{% url 'products' %}?domain=3">Supplements</a>
                 </div>
                 <!-- right side -->
                 <div class="col-5 text-white text-right">
-                    hello
+                    <a class="text-white pl-2 hover-coral" href="">News</a>
                 </div>
             </div>
 
