@@ -2,5 +2,14 @@
 {% load static %}
 
 {% block content %}
-<h1>Hello Admin</h1>
+<div class="container-fluid">
+    <hr>
+    <h1>Site Management</h1>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'add_product' %}">Add a Product</a>
+        </div>
+    </div>
+</div>
 {% endblock content %}
