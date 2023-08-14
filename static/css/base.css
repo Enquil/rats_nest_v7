@@ -1,24 +1,27 @@
 /* color scheme */
 
 .bg-charcoal {
-    background-color: #36454F;
+    background-color: #36454F !important;
 }
 
 .charcoal {
-    color: #36454F;
+    color: #36454F !important;
 }
 
 .coral {
-    color: #FF7F50;
+    color: #FF7F50 !important;
 }
 
 .bg-coral {
-    background-color: #FF7F50;
+    background-color: #FF7F50 !important;
 }
 
-.hover-dark:hover {
-    background-color: 	#71797E;
+.hover-coral:hover {
+    color: #FF7F50 !important;
 }
+
+/* nav items */
+
 
 
 /* products */
