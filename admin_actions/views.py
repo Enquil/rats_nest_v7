@@ -4,6 +4,8 @@ from products.models import Product
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 @login_required
@@ -98,11 +100,12 @@ def newsletter(request):
         if request.method == 'POST':
             print('hello')
         else:
+            subject = 'test'
+            message = 'this is a test'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['jim.e.olesen@gmail.com',]
+            send_mail(subject, message, email_from, recipient_list)
             template = 'admin_actions/newsletter.html'
-            context = {
-                'form': form,
-            }
-
-            return render(request, template, context)
+            return redirect(template)
     else:
         raise PermissionDenied
