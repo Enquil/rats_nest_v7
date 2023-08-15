@@ -89,3 +89,20 @@ def delete_product(request, product_id):
         return redirect(reverse('products'))
     else:
         raise PermissionDenied
+
+
+@login_required
+def newsletter(request):
+    """ Newsletter view """
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            print('hello')
+        else:
+            template = 'admin_actions/newsletter.html'
+            context = {
+                'form': form,
+            }
+
+            return render(request, template, context)
+    else:
+        raise PermissionDenied

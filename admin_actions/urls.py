@@ -19,4 +19,8 @@ urlpatterns = [
         'delete/<int:product_id>/', views.delete_product,
         name='delete_product'
     ),
+    path(
+        'newsletter/', views.newsletter,
+        name='newsletter'
+    ),
 ]
