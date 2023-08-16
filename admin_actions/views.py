@@ -100,12 +100,14 @@ def newsletter(request):
         if request.method == 'POST':
             print('hello')
         else:
-            subject = 'test'
-            message = 'this is a test'
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = ['jim.e.olesen@gmail.com',]
-            send_mail(subject, message, email_from, recipient_list)
+            send_mail(
+                "Subject here",
+                "Here is the message.",
+                "from@example.com",
+                ["to@example.com"],
+                fail_silently=False,
+            )
             template = 'admin_actions/newsletter.html'
-            return redirect(template)
+            return render(request, template)
     else:
         raise PermissionDenied
