@@ -34,9 +34,6 @@ class UserProfile(models.Model):
     default_country = CountryField(
         blank_label='Country', null=True, blank=True
     )
-    newsletter = models.BooleanField(
-        default=False
-    )
 
     def __str__(self):
         return self.user.username
