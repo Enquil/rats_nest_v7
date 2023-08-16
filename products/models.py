@@ -21,6 +21,19 @@ class Common(models.Model):
         return self.name
 
 
+class Friendly(models.Model):
+    '''
+    Common class for models that has friendly name
+    '''
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
+
 class Color(Common):
 
     class Meta:
@@ -33,29 +46,20 @@ class Brand(Common):
         verbose_name_plural = 'Brands'
 
 
-class Domain(Common):
+class Domain(Common, Friendly):
 
     class Meta:
         verbose_name_plural = 'Domains'
 
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
-    def get_friendly_name(self):
-        return self.friendly_name
-
-
-class Category(Common):
+class Category(Common, Friendly):
 
     class Meta:
         verbose_name_plural = 'Categories'
 
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
     domain = models.ForeignKey(
         "Domain", null=True, blank=True, on_delete=models.SET_NULL
     )
-
-    def get_friendly_name(self):
-        return self.friendly_name
 
 
 class Product(Common):
