@@ -50,7 +50,9 @@ class Category(Common):
         verbose_name_plural = 'Categories'
 
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    domain = models.ForeignKey("Domain", null=True, blank=True, on_delete=models.SET_NULL)
+    domain = models.ForeignKey(
+        "Domain", null=True, blank=True, on_delete=models.SET_NULL
+    )
 
     def get_friendly_name(self):
         return self.friendly_name
@@ -62,16 +64,22 @@ class Product(Common):
         verbose_name_plural = 'Products'
 
     brand = models.ForeignKey('Brand', null=True, on_delete=models.SET_NULL)
-    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(
+        'Category', null=True, blank=True, on_delete=models.SET_NULL
+    )
     domain = models.IntegerField(null=True, blank=True)
     sku = models.CharField(max_length=254, null=True, blank=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    rating = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True
+    )
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     m_or_f = models.CharField(null=True, max_length=254, choices=M_OR_F)
-    color = models.ForeignKey('Color', null=True, blank=True, on_delete=models.SET_NULL)
+    color = models.ForeignKey(
+        'Color', null=True, blank=True, on_delete=models.SET_NULL
+    )
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
 
     def save(self, *args, **kwargs):
