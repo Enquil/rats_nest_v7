@@ -10,60 +10,53 @@ M_OR_F = (
 )
 
 
-class Color(models.Model):
+class Common(models.Model):
+    ''' common fields for models '''
+    name = models.CharField(max_length=254)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name
+
+
+class Color(Common):
 
     class Meta:
         verbose_name_plural = 'Colors'
 
-    name = models.CharField(max_length=254)
 
-    def __str__(self):
-        return self.name
-
-
-class Brand(models.Model):
+class Brand(Common):
 
     class Meta:
         verbose_name_plural = 'Brands'
 
-    name = models.CharField(max_length=254)
 
-    def __str__(self):
-        return self.name
-
-
-class Domain(models.Model):
+class Domain(Common):
 
     class Meta:
         verbose_name_plural = 'Domains'
 
-    name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
     def get_friendly_name(self):
         return self.friendly_name
 
 
-class Category(models.Model):
+class Category(Common):
 
     class Meta:
         verbose_name_plural = 'Categories'
 
-    name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
     domain = models.ForeignKey("Domain", null=True, blank=True, on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return self.name
 
     def get_friendly_name(self):
         return self.friendly_name
 
 
-class Product(models.Model):
+class Product(Common):
 
     class Meta:
         verbose_name_plural = 'Products'
@@ -72,7 +65,6 @@ class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     domain = models.IntegerField(null=True, blank=True)
     sku = models.CharField(max_length=254, null=True, blank=True)
-    name = models.CharField(max_length=254)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
@@ -81,9 +73,6 @@ class Product(models.Model):
     m_or_f = models.CharField(null=True, max_length=254, choices=M_OR_F)
     color = models.ForeignKey('Color', null=True, blank=True, on_delete=models.SET_NULL)
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
     def save(self, *args, **kwargs):
         '''
@@ -102,4 +91,3 @@ class Product(models.Model):
             )
 
         super().save(*args, **kwargs)
-
