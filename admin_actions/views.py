@@ -1,6 +1,7 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
-from .forms import ProductForm
+from .forms import ProductForm, NewsLetterForm
 from products.models import Product
+from .models import Newsletter
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -98,8 +99,8 @@ def newsletter(request):
     """ Newsletter view """
     if request.user.is_superuser:
         if request.method == 'POST':
-            print('hello')
-        else:
+            form = NewsLetterForm(request.POST, request.FILES)
+            print(form)
             send_mail(
                 "Subject here",
                 "Here is the message.",
@@ -107,7 +108,13 @@ def newsletter(request):
                 ["to@example.com"],
                 fail_silently=False,
             )
+            return redirect(reverse('newsletter'))
+        else:
+            form = NewsLetterForm()
             template = 'admin_actions/newsletter.html'
-            return render(request, template)
+            context = {
+                'form': form,
+            }
+        return render(request, template, context)
     else:
         raise PermissionDenied

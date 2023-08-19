@@ -3,4 +3,9 @@
 
 {% block content %}
 <h1>Newsletter</h1>
+    <form action="{% url 'newsletter' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">submit</button>
+    </form>
 {% endblock content %}

@@ -1,5 +1,6 @@
 from django import forms
 from products.models import Product, Category, Color, Brand, Domain
+from .models import Newsletter
 
 
 class ProductForm(forms.ModelForm):
@@ -17,3 +18,11 @@ class ProductForm(forms.ModelForm):
         self.fields['category'].required = True
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class NewsLetterForm(forms.ModelForm):
+
+    class Meta:
+        model = Newsletter
+        fields = ('subject', 'content')
+    
