@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
-from .forms import ProductForm, NewsLetterForm
+from .forms import ProductForm, NewsletterForm
 from products.models import Product
 from .models import Newsletter
 from django.contrib import messages
@@ -99,6 +99,7 @@ def newsletter(request):
     """ Newsletter view """
     if request.user.is_superuser:
         if request.method == 'POST':
+            form = NewsletterForm(request.POST, request.FILES, instance=product)
             # if form.is_valid():
             #     form.save()
             send_mail(

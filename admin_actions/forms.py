@@ -20,7 +20,7 @@ class ProductForm(forms.ModelForm):
             field.widget.attrs['class'] = 'border-black rounded-0'
 
 
-class NewsLetterForm(forms.ModelForm):
+class NewsletterForm(forms.ModelForm):
 
     class Meta:
         model = Newsletter
