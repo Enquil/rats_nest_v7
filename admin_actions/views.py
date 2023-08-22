@@ -99,13 +99,13 @@ def newsletter(request):
     """ Newsletter view """
     if request.user.is_superuser:
         if request.method == 'POST':
-            form = NewsLetterForm(request.POST, request.FILES)
-            print(form)
+            # if form.is_valid():
+            #     form.save()
             send_mail(
-                "Subject here",
-                "Here is the message.",
+                f'{request.POST["subject"]}',
+                f'{request.POST["content"]}',
                 "from@example.com",
-                ["to@example.com"],
+                ["to@example.com", "example2@example.com"],
                 fail_silently=False,
             )
             return redirect(reverse('newsletter'))
